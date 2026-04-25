@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Bell, Edit2, Shield, Users, Calendar, CheckCircle, ChevronRight, UserPlus, Settings, Smartphone, Save, X } from 'lucide-react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Bell, Edit2, Shield, Users, Calendar, CheckCircle, ChevronRight, UserPlus, Settings, Smartphone, Save, X, Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -14,6 +14,24 @@ export default function Profile() {
   });
 
   const [editForm, setEditForm] = useState(profileData);
+  const [isSaving, setIsSaving] = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('admin_profile');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setProfileData(parsed);
+        setEditForm(parsed);
+      } catch (e) {}
+    }
+  }, []);
+
+  const showToast = (msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 3000);
+  };
 
   const handleEditToggle = () => {
     if (isEditing) {
@@ -23,8 +41,14 @@ export default function Profile() {
   };
 
   const handleSave = () => {
-    setProfileData(editForm);
-    setIsEditing(false);
+    setIsSaving(true);
+    setTimeout(() => {
+      setProfileData(editForm);
+      localStorage.setItem('admin_profile', JSON.stringify(editForm));
+      setIsEditing(false);
+      setIsSaving(false);
+      showToast('บันทึกข้อมูลส่วนตัวสำเร็จ');
+    }, 800);
   };
 
   const stats = [
@@ -85,15 +109,18 @@ export default function Profile() {
               <div className="flex gap-4 w-full">
                 <button 
                   onClick={handleEditToggle}
-                  className="flex-1 bg-white/5 text-zinc-400 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all"
+                  disabled={isSaving}
+                  className="flex-1 bg-white/5 text-zinc-400 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-white/10 transition-all disabled:opacity-50"
                 >
                   ยกเลิก
                 </button>
                 <button 
                   onClick={handleSave}
-                  className="flex-[2] bg-brand-accent text-black py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                  disabled={isSaving}
+                  className="flex-[2] bg-brand-accent text-black py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-lg hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70"
                 >
-                  <Save size={14} /> บันทึกข้อมูล
+                  {isSaving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+                  {isSaving ? 'กำลังบันทึก...' : 'บันทึกข้อมูล'}
                 </button>
               </div>
             ) : (
@@ -240,6 +267,23 @@ export default function Profile() {
             </div>
           </section>
         </div>
+
+        {/* Toast Notification */}
+        <AnimatePresence>
+          {toast && (
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.9 }}
+              className="fixed bottom-24 sm:bottom-10 left-1/2 -translate-x-1/2 z-50 px-6 py-4 bg-zinc-900 border border-white/10 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.8)] flex items-center gap-3"
+            >
+              <CheckCircle size={16} className="text-brand-accent" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white whitespace-nowrap">
+                {toast}
+              </span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );
