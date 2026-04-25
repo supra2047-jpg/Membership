@@ -5,8 +5,14 @@ import {defineConfig, loadEnv} from 'vite';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
+
+  // Define dynamic base path for GitHub Pages matching exact repository casing
+  const baseUrl = process.env.GITHUB_REPOSITORY 
+    ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` 
+    : '/Membership/';
+
   return {
-    base: './',
+    base: process.env.GITHUB_ACTIONS ? baseUrl : './',
     plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
