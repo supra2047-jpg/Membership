@@ -141,9 +141,9 @@ export default function Members() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-brand-bg pb-24 text-brand-text">
+    <div className="flex flex-col min-h-screen bg-transparent pb-24 text-brand-text">
       {/* Header */}
-      <header className="glass-border bg-brand-bg/80 backdrop-blur-md border-b sticky top-0 z-20">
+      <header className="glass-border bg-brand-surface/60 backdrop-blur-xl border-b sticky top-0 z-20">
         <div className="flex items-center px-6 py-5 max-w-screen-xl mx-auto w-full">
           <button className="text-zinc-500 hover:text-white transition-colors">
             <ArrowLeft size={24} strokeWidth={1.5} />

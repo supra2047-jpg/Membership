@@ -58,9 +58,9 @@ export default function Profile() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-brand-bg pb-24 font-sans text-brand-text">
+    <div className="flex flex-col min-h-screen bg-transparent pb-24 font-sans text-brand-text">
       {/* Header */}
-      <header className="glass-border bg-brand-bg/80 backdrop-blur-md border-b sticky top-0 z-20">
+      <header className="glass-border bg-brand-surface/60 backdrop-blur-xl border-b sticky top-0 z-20">
         <div className="flex items-center justify-between px-6 py-5 max-w-screen-xl mx-auto w-full">
           <div className="flex items-center gap-6">
             <button className="text-zinc-500 hover:text-white transition-colors">
@@ -247,7 +247,7 @@ export default function Profile() {
             <h3 className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-accent mb-6">ไทม์ไลน์กิจกรรม</h3>
             <div className="space-y-6 ml-4 border-l glass-border pl-8">
               <div className="relative">
-                <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-brand-bg glass-border flex items-center justify-center">
+                <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-brand-surface glass-border flex items-center justify-center">
                    <div className="w-1.5 h-1.5 rounded-full bg-brand-accent"></div>
                 </div>
                 <div>
@@ -256,7 +256,7 @@ export default function Profile() {
                 </div>
               </div>
               <div className="relative">
-                <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-brand-bg glass-border flex items-center justify-center">
+                <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-brand-surface glass-border flex items-center justify-center">
                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-700"></div>
                 </div>
                 <div>

@@ -5,26 +5,29 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
   
-  --color-brand-bg: #0A0A0B;
-  --color-brand-surface: #0D0D0E;
-  --color-brand-accent: #C1A47E;
-  --color-brand-text: #E0E0E0;
-  --color-brand-text-muted: #71717a;
-  --color-brand-border: rgba(255, 255, 255, 0.05);
+  --color-brand-bg: #1A1025;
+  --color-brand-surface: #261642;
+  --color-brand-accent: #00E6F0;
+  --color-brand-text: #FFFFFF;
+  --color-brand-text-muted: #A78BFA;
+  --color-brand-border: rgba(255, 255, 255, 0.1);
 }
 
 @layer base {
   body {
     @apply bg-brand-bg text-brand-text font-sans antialiased;
+    background: linear-gradient(135deg, #130B29 0%, #29124D 50%, #150F21 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-zinc-900/40 border border-white/5 rounded-[32px] transition-all duration-300;
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[32px] transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.2)];
   }
   
   .glass-border {
-    @apply border border-white/5;
+    @apply border border-white/10;
   }
 }

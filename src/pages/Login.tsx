@@ -6,7 +6,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="flex flex-col min-h-screen bg-brand-bg relative text-brand-text">
+    <div className="flex flex-col min-h-screen bg-transparent relative text-brand-text">
       {/* Back Button */}
       <div className="p-6 flex items-center">
         <button className="p-2 -ml-2 text-zinc-500 hover:text-white transition-colors">
@@ -81,7 +81,7 @@ export default function Login() {
             <div className="w-full border-t border-white/5"></div>
           </div>
           <div className="relative flex justify-center text-[9px] uppercase tracking-[0.3em] font-bold text-zinc-600">
-            <span className="bg-brand-bg px-6 italic font-serif lowercase">or explore via</span>
+            <span className="bg-brand-surface/80 px-6 py-1 rounded-full backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)] italic font-serif lowercase">or explore via</span>
           </div>
         </div>
 

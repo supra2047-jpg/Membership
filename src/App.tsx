@@ -25,7 +25,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg font-sans max-w-screen-md mx-auto relative shadow-[0_0_100px_rgba(0,0,0,0.5)] border-x border-white/5">
+    <div className="min-h-screen bg-transparent font-sans max-w-screen-md mx-auto relative shadow-[0_0_100px_rgba(0,0,0,0.5)] border-x border-white/10">
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab}

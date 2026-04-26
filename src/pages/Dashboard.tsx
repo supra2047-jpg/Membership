@@ -36,9 +36,9 @@ export default function Dashboard() {
   const chartData = [40, 55, 48, 70, 65, 85];
 
   return (
-    <div className="flex flex-col min-h-screen bg-brand-bg pb-24 text-brand-text selection:bg-brand-accent/30">
+    <div className="flex flex-col min-h-screen bg-transparent pb-24 text-brand-text selection:bg-brand-accent/30">
       {/* Top Header */}
-      <header className="flex items-center justify-between px-6 py-8 border-b border-white/5 bg-[#0A0A0B]/50 backdrop-blur-xl sticky top-0 z-30">
+      <header className="flex items-center justify-between px-6 py-8 border-b border-white/10 bg-brand-surface/40 backdrop-blur-2xl sticky top-0 z-30">
         <div className="flex items-center gap-5">
           <div className="w-10 h-10 rounded-full glass-border flex items-center justify-center bg-white/5 hover:bg-white/10 transition-colors cursor-pointer">
             <Menu className="text-zinc-500" size={20} />
@@ -55,7 +55,7 @@ export default function Dashboard() {
           </div>
           <button className="relative p-3 bg-white/5 rounded-full border border-white/5 hover:border-brand-accent/50 transition-all group">
             <Bell size={18} className="text-brand-accent group-hover:scale-110 transition-transform" />
-            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-brand-accent rounded-full shadow-[0_0_8px_rgba(193,164,126,0.6)]"></span>
+            <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-brand-accent rounded-full shadow-[0_0_12px_var(--color-brand-accent)]"></span>
           </button>
         </div>
       </header>
@@ -135,7 +135,7 @@ export default function Dashboard() {
                     initial={{ height: 0 }}
                     animate={{ height: `${val}%` }}
                     transition={{ duration: 1.2, ease: "circOut", delay: i * 0.1 }}
-                    className={`w-full rounded-t-lg transition-all duration-500 ${i === chartData.length - 1 ? 'bg-gradient-to-t from-brand-accent to-brand-accent/50 shadow-[0_0_30px_rgba(193,164,126,0.15)]' : 'bg-zinc-800/50 group-hover:bg-zinc-800'}`}
+                    className={`w-full rounded-t-lg transition-all duration-500 ${i === chartData.length - 1 ? 'bg-gradient-to-t from-brand-accent to-brand-accent/50 shadow-[0_0_30px_var(--color-brand-accent)] opacity-80' : 'bg-white/5 group-hover:bg-white/10'}`}
                   ></motion.div>
                   <span className={`text-[9px] font-black uppercase tracking-[0.2em] transition-colors ${i === chartData.length - 1 ? 'text-brand-accent' : 'text-zinc-600 group-hover:text-zinc-400'}`}>
                     {months[i]}
